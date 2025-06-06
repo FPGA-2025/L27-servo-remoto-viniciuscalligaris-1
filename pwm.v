@@ -7,7 +7,6 @@ module PWM (
 );
 
     reg [31:0] counter;
-    reg pwm_next;
 
     always @(posedge clk) begin
         if (!rst_n) begin
@@ -18,8 +17,7 @@ module PWM (
                 counter <= 32'd0;
             else
                 counter <= counter + 32'd1;
-                pwm_next = (counter < duty_cycle) ? 1'b1 : 1'b0;
-                pwm_out  <= pwm_next;
+                pwm_out = (counter < duty_cycle) ? 1'b1 : 1'b0;
         end
     end
     
